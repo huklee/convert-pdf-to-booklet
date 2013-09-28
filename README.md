@@ -5,9 +5,9 @@ pdf operating tools for easily handle pdf books.
 Booklet maker
 =======
 
-First you should install python 2.7 and pyPdf module.
+python 2.7 and pyPdf module should be installed first.
 
-I recommand using briss to crop first, then use this tool to rearrange page number.
+I recommand using briss to crop PDF first, then use this tool to rearrange page number.
 
 It's a beta version, it was tested on some pdf books.
 

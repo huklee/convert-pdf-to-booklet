@@ -3,7 +3,7 @@ pdf-operator
 pdf operating tools for easily handle pdf books.
 
 Booklet maker
-============
+=======
 
 First you should install python 2.7 and pyPdf module.
 

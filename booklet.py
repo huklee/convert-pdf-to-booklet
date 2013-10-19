@@ -53,7 +53,7 @@ except:
     print 'No input file'
     print 'Usage:',sys.argv[0],'[input file]'
     sys.exit(1)
-print 'processing..'
+print 'proceeding..'
 
 lastpage = pdf.getPage(0)
 width = lastpage.mediaBox.getWidth()

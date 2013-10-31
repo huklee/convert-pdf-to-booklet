@@ -11,7 +11,7 @@ I recommand using briss to crop PDF first, then use this tool to rearrange page 
 
 It's a beta version, it was tested on some pdf books.
 
-odd,4M,4M+2 pages can be adapted automatically, all you need to do is use this tool directly.
+odd,4M,4M+2 pages can be adapted automatically, all you need to do is using this tool directly.
 
 Usage: booklet.py InputPDFFile
 

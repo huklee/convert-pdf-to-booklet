@@ -52,7 +52,7 @@ def generate_page_list_whole(start, end):
                 a += 1
         if flag1 == 1:
             foo[foo.index(n - 1)] = 'b'
-                return foo
+    return foo
 
 
 output = PdfFileWriter()

@@ -1,16 +1,25 @@
 from pyPdf import PdfFileWriter, PdfFileReader
 import sys
-def generate_page_list(n):
-    print n,'pages'
+
+def generate_page_list(n, div=4):
+    print 1, n,'pages'
+    result = []
+    for i in range(n/div + 1):
+        if 4*i > n: break
+        result += generate_page_list_whole(4*i, min(n, 4*i + 4))
+    return result
+
+def generate_page_list_whole(start, end):
+    n = end - start
     foo = []
     flag1 = n % 2
     # if n is an odd number, page n+1 is a BlankPage
     if flag1 == 1:
         n += 1
-    
-    a = 0
-    b = n - 1
-    
+
+    a = start
+    b = end - 1
+
     #4M or 4M+2 ?
     flag2 = n % 4
     if flag2 == 0: # n = 4M
@@ -42,9 +51,9 @@ def generate_page_list(n):
                 foo.append(a)
                 a += 1
         if flag1 == 1:
-            foo[foo.index(n - 1)] = 'b'   
-    return foo
-    
+            foo[foo.index(n - 1)] = 'b'
+                return foo
+
 
 output = PdfFileWriter()
 try:
@@ -64,7 +73,7 @@ for i in generate_page_list(pdf.getNumPages()):
         output.addBlankPage(width,height)
     else:
         output.addPage(pdf.getPage(i))
-        
+
 print 'writing file...'
 outputStream = file(sys.argv[1] + '_booklet.pdf', "wb")
 output.write(outputStream)

@@ -23,7 +23,6 @@ def generate_page_list_whole(start, end):
     #4M or 4M+2 ?
     flag2 = n % 4
     if flag2 == 0: # n = 4M
-        print 'page type:4M'
         for i in range(n):
             flag = i % 4
             if flag == 0:
@@ -38,7 +37,6 @@ def generate_page_list_whole(start, end):
         if flag1 == 1:
             foo[foo.index(n - 1)] = 'b'
     else: #n = 4M+2
-        print 'page type:4M+2'
         for i in range(n + 2):
             flag = i % 4
             if flag == 0 or flag == 3:

@@ -1,10 +1,10 @@
-from pyPdf import PdfFileWriter, PdfFileReader
+from pypdf import PdfWriter, PdfReader
 import sys
 
 def generate_page_list(n, div=4):
-    print 1, n,'pages'
+    print (1, n,'pages')
     result = []
-    for i in range(n/div + 1):
+    for i in range(int(n/div + 1)):
         if 4*i > n: break
         result += generate_page_list_whole(4*i, min(n, 4*i + 4))
     return result
@@ -53,27 +53,29 @@ def generate_page_list_whole(start, end):
     return foo
 
 
-output = PdfFileWriter()
+output = PdfWriter()
+print("Filename: ", sys.argv[1])
 try:
-    pdf = PdfFileReader(file(sys.argv[1], "rb"))
-except:
-    print 'No input file'
-    print 'Usage:',sys.argv[0],'[input file]'
+    pdf = PdfReader(open(sys.argv[1], "rb"))
+except Exception as err:
+    print ("ERROR: ", err)
+    print ('No input file')
+    print ('Usage:',sys.argv[0],'[input file]')
     sys.exit(1)
-print 'proceeding..'
+print ('proceeding..')
 
-lastpage = pdf.getPage(0)
-width = lastpage.mediaBox.getWidth()
-height = lastpage.mediaBox.getHeight()
+lastpage = pdf.pages[0]
+width = lastpage.mediabox.width
+height = lastpage.mediabox.height
 
-for i in generate_page_list(pdf.getNumPages()):
+for i in generate_page_list(len(pdf.pages)):
     if i == 'b':
-        output.addBlankPage(width,height)
+        output.add_blank_page(width,height)
     else:
-        output.addPage(pdf.getPage(i))
+        output.add_page(pdf.pages[i])
 
-print 'writing file...'
-outputStream = file(sys.argv[1] + '_booklet.pdf', "wb")
+print ('writing file...')
+outputStream = open(sys.argv[1] + '_booklet.pdf', "wb")
 output.write(outputStream)
 outputStream.close()
-print "%s pages created." % output.getNumPages()
+print ("%s pages created." % len(output.pages))
